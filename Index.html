@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diwali Surprise | From Krishna ❤️</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400..800&family=Doppio+One&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Permanent+Marker&display=swap" rel="stylesheet">
+
+<style>
+
+
+/* MYSTERY TRANSITION */
+#transition {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+#transition.active {
+    visibility: visible;
+}
+
+.curtain {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background: radial-gradient(circle, #4a1023, #10050b 75%);
+    transition: transform 1s cubic-bezier(.77, 0, .18, 1);
+}
+
+.curtain.left {
+    left: 0;
+    transform: translateX(-100%);
+    border-right: 2px solid #d4af37;
+}
+
+.curtain.right {
+    right: 0;
+    transform: translateX(100%);
+    border-left: 2px solid #d4af37;
+}
+
+#transition.active .curtain {
+    transform: translateX(0);
+}
+
+.mystery-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(.7);
+    color: #ffd76a;
+    text-align: center;
+    opacity: 0;
+    font-size: 22px;
+    letter-spacing: 3px;
+    transition: opacity .5s, transform .5s;
+    width: 90%;
+}
+
+#transition.active .mystery-text {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.golden-loader {
+    width: 45px;
+    height: 45px;
+    border: 3px solid #ffffff30;
+    border-top-color: #ffd76a;
+    border-radius: 50%;
+    margin: 25px auto 0;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* PAGE REVEAL */
+.page {
+    animation: pageReveal 1s ease both;
+}
+
+@keyframes pageReveal {
+    from {
+        opacity: 0;
+        transform: scale(1.08);
+        filter: blur(12px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+    min-height:100vh;
+    overflow:hidden;
+    background:#10050e;
+    color:#fff4df;
+    font-family:Georgia,serif;
+
+}
+
+body:before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+    radial-gradient(circle at 50% 45%,#702b3d 0%,#350e27 48%,#10050e 100%);
+    z-index:-3;
+}
+
+#sky{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:5;
+    overflow:hidden;
+}
+
+.stars{
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    pointer-events:none;
+    background-image:
+    radial-gradient(2px 2px at 20% 30%,#fff 50%,transparent),
+    radial-gradient(2px 2px at 70% 20%,#ffd77d 50%,transparent),
+    radial-gradient(2px 2px at 85% 65%,#fff 50%,transparent),
+    radial-gradient(2px 2px at 35% 80%,#ffd77d 50%,transparent);
+    background-size:250px 250px;
+    animation:twinkle 3s infinite alternate;
+}
+
+@keyframes twinkle{
+    from{opacity:.3}
+    to{opacity:1}
+}
+
+/* INTRO */
+
+#intro{
+    position:fixed;
+    inset:0;
+    z-index:100;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    text-align:center;
+    padding:25px;
+    background:radial-gradient(circle,#542035,#10050e 75%);
+    transition:1s;
+}
+
+#intro.hide{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+}
+
+.intro-lamp{
+    font-size:90px;
+    animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+    to{filter:drop-shadow(0 0 35px gold);transform:scale(1.1)}
+}
+
+.intro-label{
+    color:#ffd47d;
+    letter-spacing:4px;
+    font-size:11px;
+    margin:25px 0;
+}
+
+#intro h1{
+    font-size:clamp(38px,8vw,65px);
+    color:#ffce72;
+    text-shadow:0 0 30px #ff9e2c;
+    margin-bottom:20px;
+}
+
+#intro p{
+    line-height:1.9;
+    color:#ffe2cb;
+}
+
+.open-btn{
+    margin-top:30px;
+    padding:17px 35px;
+    border:1px solid gold;
+    border-radius:50px;
+    background:linear-gradient(135deg,#ffe8a6,#bd742d);
+    color:#401124;
+    font-weight:bold;
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+    50%{box-shadow:0 0 35px gold;transform:scale(1.06)}
+}
+
+/* MUSIC */
+
+.music-btn{
+    position:fixed;
+    right:15px;
+    top:10px;
+    z-index:50;
+    background:#66243c;
+    color:white;
+    border:1px solid gold;
+    padding:9px 10px;
+    border-radius:30px;
+    cursor:pointer;
+}
+
+/* PAGES */
+
+.container{
+    min-height:90vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.page{
+    display:none;
+    width:100%;
+    max-width:700px;
+    min-height:520px;
+    padding:35px 25px;
+    border:1px solid rgba(255,210,120,.55);
+    border-radius:28px;
+    background:rgba(42,7,27,.78);
+    backdrop-filter:blur(15px);
+    box-shadow:0 0 60px rgba(255,180,60,.18);
+    text-align:center;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.page.active{
+    display:flex;
+    animation:pageEnter .8s ease;
+}
+
+@keyframes pageEnter{
+    from{opacity:0;transform:scale(.85) translateY(30px)}
+    to{opacity:1;transform:scale(1) translateY(0)}
+}
+
+.page:after{
+    content:"✦";
+    position:absolute;
+    top:15px;
+    right:20px;
+    color:#ffda8b;
+    font-size:22px;
+    animation:twinkle 1s infinite alternate;
+}
+
+.lamp{
+    font-size:65px;
+    margin-bottom:20px;
+    filter:drop-shadow(0 0 18px orange);
+    animation:lampFloat 3s infinite ease-in-out;
+}
+
+@keyframes lampFloat{
+    50%{transform:translateY(-12px) rotate(5deg)}
+}
+
+.label{
+    font-family:Arial,sans-serif;
+    font-size:11px;
+    letter-spacing:4px;
+    color:#ffd17a;
+    margin-bottom:20px;
+}
+
+h1{
+    font-size:clamp(35px,7vw,55px);
+    color:#fff0d0;
+    margin-bottom:22px;
+    text-shadow:0 0 20px rgba(255,190,80,.5);
+}
+
+h1 span{color:#ffc35c}
+
+.description{
+    font-size:17px;
+    max-width:510px;
+    line-height:1.9;
+    color:#f5d9d6;
+    margin-bottom:20px;
+}
+
+.quote{
+    color:#ffcf83;
+    font-style:italic;
+    line-height:1.8;
+    margin:15px 0;
+    font-size:10px;
+}
+
+h2{
+    color:#ffdc9b;
+    font-size:19px;
+    line-height:1.7;
+    margin:15px 0;
+}
+
+.wishes{
+    text-align:left;
+    line-height:2.4;
+    color:#ffe4c5;
+}
+
+.next-btn,.celebrate-btn{
+    padding:15px 30px;
+    border:0;
+    border-radius:50px;
+    background:linear-gradient(135deg,#ffe5a0,#c47b31);
+    color:#3b1020;
+    font-weight:bold;
+    margin-top:20px;
+    transition:.3s;
+}
+
+.next-btn:hover,.celebrate-btn:hover{
+    transform:scale(1.1);
+    box-shadow:0 0 30px gold;
+}
+
+.celebrate-btn{
+    background:transparent;
+    color:#ffdf9c;
+    border:1px solid gold;
+}
+
+.counter{
+    position:fixed;
+    bottom:15px;
+    left:50%;
+    transform:translateX(-50%);
+    color:#f4ca8b;
+    letter-spacing:3px;
+    font-size:12px;
+}
+
+/* FIREWORKS */
+
+.spark{
+    position:fixed;
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    pointer-events:none;
+    z-index:20;
+    box-shadow:0 0 12px currentColor;
+}
+
+.floating{
+    position:fixed;
+    pointer-events:none;
+    z-index:10;
+    animation:floatUp 6s linear forwards;
+}
+
+@keyframes floatUp{
+    to{transform:translateY(-110vh) rotate(360deg);opacity:0}
+}
+
+.flash{
+    position:fixed;
+    inset:0;
+    z-index:15;
+    background:white;
+    opacity:0;
+    pointer-events:none;
+}
+
+@media(max-width:600px){
+    .page{min-height:480px;padding:28px 17px}
+    .description{font-size:15px}
+    .lamp{font-size:50px}
+    .label{letter-spacing:2px}
+}
+
+h2{
+font-size:8px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+<div id="sky"></div>
+<div class="flash" id="flash"></div>
+
+<!-- MUSIC FILE -->
+<audio id="music" loop preload="auto">
+    <source src="diwali.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music-btn" id="musicBtn" onclick="toggleMusic()">
+    🎵 Play Music
+</button>
+
+<!-- MYSTERY OPENING -->
+
+<div id="intro">
+
+    <div class="intro-lamp">🪔</div>
+
+    <div class="intro-label">A MAGICAL DIWALI SURPRISE</div>
+
+    <h1>Something Special ❤️</h1>
+
+    <p>
+        Is andheri raat mein roshni ki ek kahani hai...<br>
+        Aur us kahani mein aapke liye ek surprise hai.
+    </p>
+
+    <p style="margin-top:20px">
+        Are you ready to experience the magic? ✨
+    </p>
+
+    <button class="open-btn" onclick="reveal()">
+        OPEN YOUR SURPRISE 🎁
+    </button>
+
+    <p style="margin-top:35px">
+        A special creation by big brother of Krishna  ❤️
+    </p>
+
+</div>
+
+<!-- MAIN WEBSITE -->
+
+<main class="container">
+
+<!-- PAGE 1 -->
+
+<section class="page active" id="page1">
+
+<div class="lamp">🪔</div>
+<p class="label">A FESTIVAL OF LOVE & LIGHT</p>
+
+<h1>Happy <span>Diwali</span> ❤️</h1>
+
+<p class="description">
+krishna ki taraf se aapko aur aapke poore
+parivaar ko Deepawali ki hardik shubhkamnayein!
+</p>
+
+<p class="quote">
+May your life sparkle brighter than a thousand stars.
+</p>
+
+<button class="next-btn" onclick="nextPage(2)">
+Continue ❤️
+</button>
+
+</section>
+
+<!-- PAGE 2 -->
+
+<section class="page" id="page2">
+
+<div class="lamp">✨</div>
+<p class="label">A LITTLE WISH FOR YOU</p>
+
+<h1>Dear <span>Special One</span></h1>
+
+<p class="description">
+May every diya bring happiness,
+every prayer bring peace,
+and every new morning bring beautiful opportunities.
+</p>
+
+<h2>Aap hamesha muskurate rahein! ❤️</h2>
+
+<button class="next-btn" onclick="nextPage(3)">
+Next Surprise ✨
+</button>
+
+</section>
+
+<!-- PAGE 3 -->
+
+<section class="page" id="page3">
+
+<div class="lamp">💖</div>
+<p class="label">WORDS FROM THE HEART</p>
+
+<h1>A Little <span>Love</span></h1>
+
+<p class="description">
+Aapki muskurahat kabhi kam na ho,
+aapke sapne kabhi adhure na rahein,
+aur aapke jeevan mein hamesha pyaar bana rahe.
+</p>
+
+<p class="quote">
+"You deserve all the beautiful things in this universe."
+</p>
+
+<button class="next-btn" onclick="nextPage(4)">
+Feel the Magic ❤️
+</button>
+
+</section>
+
+<!-- PAGE 4 -->
+
+<section class="page" id="page4">
+
+<div class="lamp">🌸</div>
+<p class="label">BLESSINGS & PROSPERITY</p>
+
+<h1>May You <span>Shine</span></h1>
+
+<div class="wishes" style="font-size:6px">
+<p>✨ Happiness in every moment</p>
+<p>❤️ Love in every relationship</p>
+<p>🌸 Peace in every situation</p>
+<p>💰 Prosperity in every beginning</p>
+<p>🪔 Light in every dark moment</p>
+</div>
+
+<button class="next-btn" onclick="nextPage(5)">
+Another Surprise 🎆
+</button>
+
+</section>
+
+<!-- PAGE 5 -->
+
+<section class="page" id="page5">
+
+<div class="lamp">🎇</div>
+<p class="label">NEW HOPES & NEW DREAMS</p>
+
+<h1>Keep <span>Shining</span></h1>
+
+<p class="description">
+May this Diwali open the doors to success,
+bring countless opportunities and create
+memories that last forever.
+</p>
+
+<h2>New dreams. New beginnings. New happiness.</h2>
+
+<button class="next-btn" onclick="nextPage(6)">
+Final Surprise 🎁
+</button>
+
+</section>
+
+<!-- PAGE 6 -->
+
+<section class="page" id="page6" >
+
+<div class="lamp">🪔❤️🪔</div>
+<p class="label">WITH LOVE FROM KRISHNA</p>
+
+<h1 style="font-family:"Doppio One",sans-serif;">Happy <span>Diwali!</span></h1>
+
+<p class="description">
+krishna ki taraf se aapko aur aapke parivaar ko
+Deepawali ki dher saari shubhkamnayein!
+</p>
+
+<h2>
+Aapka ghar khushiyon se roshan rahe,
+aur aapka jeevan safalta aur pyaar se bhara rahe. ❤️
+</h2>
+
+<p class="quote">
+Stay blessed. Keep smiling. Keep shining!
+</p>
+
+<button class="next-btn" onclick="nextPage(1)">
+Read Again 😊
+</button>
+
+<button class="celebrate-btn" onclick="grandFinale()">
+GRAND CELEBRATION 🎆
+</button>
+
+</section>
+
+</main>
+
+<div class="counter" id="counter">01 / 06</div>
+
+<script>
+
+/* MUSIC */
+
+const music = document.getElementById("music");
+const musicBtn = document.getElementById("musicBtn");
+
+async function startMusic(){
+
+    try{
+        await music.play();
+        musicBtn.innerText = "🔇 Pause Music";
+    }catch(error){
+        musicBtn.innerText = "🎵 Tap to Play";
+    }
+
+}
+
+function toggleMusic(){
+
+    if(music.paused){
+        startMusic();
+    }else{
+        music.pause();
+        musicBtn.innerText = "🎵 Play Music";
+    }
+
+}
+
+// Attempt autoplay. Browser may block it.
+window.addEventListener("load",()=>{
+    startMusic();
+});
+
+
+/* REVEAL */
+
+function reveal(){
+
+    document.getElementById("intro").classList.add("hide");
+
+    startMusic();
+
+    // Celebration at opening
+    launchShow(18);
+
+}
+
+
+/* NAVIGATION */
+
+let currentPage=1;
+
+function nextPage(number){
+
+    document.getElementById("page"+currentPage)
+        .classList.remove("active");
+
+    currentPage=number;
+
+    document.getElementById("page"+currentPage)
+        .classList.add("active");
+
+    document.getElementById("counter").innerText=
+        "0"+currentPage+" / 06";
+
+    // Every page gets its own fireworks!
+    launchShow(5);
+
+    // Short festive flash
+    flashScreen();
+
+}
+
+
+/* SCREEN FLASH */
+
+function flashScreen(){
+
+    const flash=document.getElementById("flash");
+
+    flash.animate([
+        {opacity:0},
+        {opacity:.18},
+        {opacity:0}
+    ],{
+        duration:500
+    });
+
+}
+
+
+/* FIREWORK BURST */
+
+function burst(x,y){
+
+    const colors=[
+        "#FFD700",
+        "#FF5733",
+        "#FF69B4",
+        "#00FFFF",
+        "#FFFFFF",
+        "#FF8C00",
+        "#A5FF70"
+    ];
+
+    for(let i=0;i<45;i++){
+
+        const particle=document.createElement("div");
+
+        particle.className="spark";
+
+        const angle=Math.random()*Math.PI*2;
+
+        const distance=60+Math.random()*140;
+
+        const dx=Math.cos(angle)*distance;
+        const dy=Math.sin(angle)*distance;
+
+        const color=colors[
+            Math.floor(Math.random()*colors.length)
+        ];
+
+        particle.style.background=color;
+        particle.style.color=color;
+        particle.style.left=x+"vw";
+        particle.style.top=y+"vh";
+
+        document.getElementById("sky").appendChild(particle);
+
+        particle.animate([
+            {
+                transform:"translate(0,0) scale(1)",
+                opacity:1
+            },
+            {
+                transform:`translate(${dx}px,${dy}px) scale(0)`,
+                opacity:0
+            }
+        ],{
+            duration:1300+Math.random()*700,
+            easing:"ease-out"
+        });
+
+        setTimeout(()=>particle.remove(),2200);
+
+    }
+
+}
+
+
+/* FIREWORK SHOW */
+
+function launchShow(amount=8){
+
+    let count=0;
+
+    const show=setInterval(()=>{
+
+        burst(
+            5+Math.random()*90,
+            8+Math.random()*65
+        );
+
+        count++;
+
+        if(count>=amount){
+            clearInterval(show);
+        }
+
+    },300);
+
+}
+
+
+/* FLOATING FESTIVAL PARTICLES */
+
+function floatingMagic(){
+
+    const symbols=["❤️","✨","🌸","🪔","⭐","🎇"];
+
+    const item=document.createElement("div");
+
+    item.className="floating";
+
+    item.innerText=
+        symbols[Math.floor(Math.random()*symbols.length)];
+
+    item.style.left=Math.random()*100+"vw";
+    item.style.bottom="-40px";
+    item.style.fontSize=(15+Math.random()*25)+"px";
+
+    document.getElementById("sky").appendChild(item);
+
+    setTimeout(()=>item.remove(),6500);
+
+}
+
+setInterval(floatingMagic,450);
+
+
+/* GRAND FINALE */
+
+function grandFinale(){
+
+    launchShow(30);
+
+    flashScreen();
+
+}
+
+const transition = document.getElementById("transition");
+const mysteryMessage = document.getElementById("mysteryMessage");
+
+const mysteryMessages = [
+    "A little magic awaits...",
+    "Something beautiful is coming...",
+    "The magic of Diwali is unfolding...",
+    "A new surprise is waiting...",
+    "Let the lights reveal your happiness..."
+];
+
+let isTransitioning = false;
+
+function goToPage(nextPage) {
+    if (isTransitioning) return;
+
+    const pages = document.querySelectorAll(".page");
+    if (!pages[nextPage]) return;
+
+    isTransitioning = true;
+
+    mysteryMessage.textContent =
+        mysteryMessages[Math.floor(Math.random() * mysteryMessages.length)];
+
+    transition.classList.add("active");
+
+    setTimeout(() => {
+        pages.forEach(page => page.style.display = "none");
+
+        pages[nextPage].style.display = "flex";
+
+        // Restart the page reveal animation
+        pages[nextPage].style.animation = "none";
+        void pages[nextPage].offsetWidth;
+        pages[nextPage].style.animation = "";
+
+        window.scrollTo(0, 0);
+    }, 1100);
+
+    setTimeout(() => {
+        transition.classList.remove("active");
+        isTransitioning = false;
+    }, 2100);
+}
+
+</script>
+<div id="transition">
+    <div class="curtain left"></div>
+    <div class="curtain right"></div>
+
+    <div class="mystery-text">
+        <span id="mysteryMessage">A little magic awaits...</span>
+        <div class="golden-loader"></div>
+    </div>
+</div>
+
+</body>
+  </html>
